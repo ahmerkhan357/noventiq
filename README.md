@@ -97,6 +97,11 @@ The `ForgotPassword` component displays the input of the application.
   - `Footer.css`: Contains the styles for the `Footer` component.
   - `Login.css`: Contains the styles for the `Login` component.
 
+- `src/translation`: Contains the translation json file for the application.
+  - `en.js`: Contains the english labels.
+  - `hi.js`: Contains the hindi labels.
+  - `bn.js`: Contains the bengla labels.
 ## Contributing
 
 If you have suggestions or improvements, feel free to create a pull request or open an issue.
+
