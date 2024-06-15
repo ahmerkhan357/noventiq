@@ -25,9 +25,11 @@ function Login(){
                 case 'hi':
                 case 'bn':
                     setLanguage(userLanguage);
+                    i18n.changeLanguage(userLanguage); // Change language dynamically
                     break;
                 default:
                     setLanguage('en'); // Default to English if the browser language is unsupported
+                    i18n.changeLanguage('en');
                     break;
             }
         };
