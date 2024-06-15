@@ -25,7 +25,7 @@ function Login(){
                 case 'hi':
                 case 'bn':
                     setLanguage(userLanguage);
-                    i18n.changeLanguage(userLanguage); // Change language dynamically
+                    i18n.changeLanguage(userLanguage); // Change language
                     break;
                 default:
                     setLanguage('en'); // Default to English if the browser language is unsupported
