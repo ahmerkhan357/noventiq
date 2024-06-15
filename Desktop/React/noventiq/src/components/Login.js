@@ -1,11 +1,12 @@
-import React  from 'react';
+import React, { useState, useEffect }  from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 import Header from './Header';
 import Footer from './Footer';
 import '../css/Login.css';
-import { useState, useEffect } from 'react';
 
 function Login(){
+    const { t, i18n } = useTranslation(); // Initialize useTranslation hook
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -82,7 +83,11 @@ function Login(){
 
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
-    const handleLanguageChange = (e) => setLanguage(e.target.value);
+    const handleLanguageChange = (e) => {
+        const selectedLanguage = e.target.value;
+        setLanguage(selectedLanguage);
+        i18n.changeLanguage(selectedLanguage); // Change language dynamically
+    };
 
     const handleRememberMeChange = (e) => {
         const isChecked = e.target.checked;
@@ -101,12 +106,12 @@ function Login(){
 
         // Email validation check
         if (!validateEmail(email)) {
-            setEmailError('Please enter a valid corporate email address.');
+            setEmailError(t('login.errors.email'));
             return;
         }
 
         if (!validatePassword(password)) {
-            setPasswordError('Please enter password.');
+            setPasswordError(t('login.errors.password'));
             return;
         }
 
@@ -145,44 +150,44 @@ function Login(){
         <div className="login">
             <form className="form-login">
                 <div className='form-group'>
-                    <label htmlFor="email">Email :</label>
+                    <label htmlFor="email">{t('login.email')}</label>
                     <div className="input-email">
                         <i className="fas fa-envelope icon"></i>
-                        <input type="email" name="email" value={email} onChange={handleEmailChange} placeholder="Enter your email" required />
+                        <input type="email" name="email" value={email} onChange={handleEmailChange} placeholder={t('login.emailPlaceholder')} required />
                     </div>
                 </div>
                 {emailError && <div className="error">{emailError}</div>}
                 <div className='form-group'>
-                    <label htmlFor="password">Password :</label>
+                    <label htmlFor="password">{t('login.password')}</label>
                     <div className="input-password">
                         <i className="fas fa-lock icon"></i>
-                        <input type={showPassword ? 'text' : 'password'} name="password" value={password} onChange={handlePasswordChange} placeholder="Enter your password" required />
-                        <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'} icon`} onClick={togglePasswordVisibility} id="togglePassword" aria-label="Toggle password visibility"></i>
+                        <input type={showPassword ? 'text' : 'password'} name="password" value={password} onChange={handlePasswordChange} placeholder={t('login.passwordPlaceholder')} required />
+                        <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'} icon`} onClick={togglePasswordVisibility} id="togglePassword"></i>
                     </div>
                 </div>
                 {passwordError && <div className="error">{passwordError}</div>}
                 <div className="forgot">
-                        <span> <Link to='/forgot'>Forgot Password?</Link></span>
+                        <span> <Link to='/forgot'>{t('login.forgotPassword')}</Link></span>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="language">Language:</label>
+                    <label htmlFor="language">{t('login.language')}</label>
                     <div className="language-dropdown">
                         <select name="language" id="language" value={language} onChange={handleLanguageChange}>
                             <option value="en">English</option>
                             <option value="hi">Hindi</option>
-                            <option value="bn">Bengali</option>
+                            <option value="bn">Bengla</option>
                         </select>
                         <i className="fas fa-caret-down dropdown-icon"></i>
                     </div>
                 </div>
                 <div className="form-switch forgot remember-me">
                     <input className="form-check-input" type="checkbox" role="switch" id="rememberMe" checked={rememberMe} onChange={handleRememberMeChange}/>
-                    <span className="form-check-label" htmlFor="remember">Remember Me</span>
+                    <span className="form-check-label" htmlFor="remember">{t('login.rememberMe')}</span>
                 </div>
             </form>
         </div>
         <div className="login-button">
-            <button type='submit' onClick={handleFormSubmit}>Log in</button>
+            <button type='submit' onClick={handleFormSubmit}>{t('login.loginButton')}</button>
         </div>
         <Footer />
         </>
