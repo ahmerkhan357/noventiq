@@ -101,6 +101,15 @@ The `ForgotPassword` component displays the input of the application.
   - `en.js`: Contains the english labels.
   - `hi.js`: Contains the hindi labels.
   - `bn.js`: Contains the bengla labels.
+
+## Internationalization (i18n)
+
+The application uses i18next and react-i18next for internationalization. The default language is English (en), with support for Hindi (hi) and Bengali (bn). The language is automatically detected based on the user's browser settings.
+
+## To switch languages:
+
+Use the language dropdown in the Login component to select between English, Hindi, and Bengali. The application's content will dynamically update based on the selected language.
+
 ## Contributing
 
 If you have suggestions or improvements, feel free to create a pull request or open an issue.
